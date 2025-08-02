@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: From Foundation Model to Deployed API with QLoRA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi-value {
+            font-weight: 900;
+            font-size: 3.5rem;
+            line-height: 1;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#003B73] mb-2">From Foundation Model to Deployed API</h1>
+            <p class="text-xl text-[#0074B7]">A Visual Guide to QLoRA Fine-Tuning & Deployment</p>
+        </header>
+
+        <main>
+            
+            <section id="introduction" class="mb-16">
+                <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-[#003B73] mb-4 text-center">The Mission: Efficient AI Specialization</h2>
+                    <p class="text-lg text-gray-600 mb-6 text-center">This infographic breaks down the end-to-end process of taking a general-purpose Large Language Model (LLM), efficiently fine-tuning it for a specific task using the powerful QLoRA technique, and deploying it as a live, accessible web API. Follow the journey from setup to a fully functional AI service.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <div class="text-4xl mb-2">🚀</div>
+                            <h3 class="text-xl font-semibold text-[#00509D]">Start with a Base Model</h3>
+                            <p class="text-gray-600">Leverage a powerful, pre-trained LLM as the foundation.</p>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <div class="text-4xl mb-2">🔧</div>
+                            <h3 class="text-xl font-semibold text-[#00509D]">Fine-Tune with QLoRA</h3>
+                            <p class="text-gray-600">Efficiently adapt the model to a new task on accessible hardware.</p>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <div class="text-4xl mb-2">☁️</div>
+                            <h3 class="text-xl font-semibold text-[#00509D]">Deploy as an API</h3>
+                            <p class="text-gray-600">Make the specialized model available for real-world applications.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+            <section id="workflow-overview" class="mb-16">
+                <h2 class="text-3xl font-bold text-[#003B73] mb-8 text-center">The End-to-End Workflow</h2>
+                <div class="max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-8">
+                    <div class="flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0 md:space-x-4">
+                        <div class="text-center flex-1">
+                            <div class="text-5xl mb-3 text-[#0074B7]">🖥️</div>
+                            <h3 class="text-xl font-semibold">1. Environment Setup</h3>
+                            <p class="text-gray-500">Configure Colab GPU & install libraries.</p>
+                        </div>
+                        <div class="text-[#60A5FA] flow-arrow transform md:rotate-0 rotate-90">→</div>
+                        <div class="text-center flex-1">
+                            <div class="text-5xl mb-3 text-[#0074B7]">📚</div>
+                            <h3 class="text-xl font-semibold">2. Data Preparation</h3>
+                            <p class="text-gray-500">Load & format the training dataset.</p>
+                        </div>
+                        <div class="text-[#60A5FA] flow-arrow transform md:rotate-0 rotate-90">→</div>
+                        <div class="text-center flex-1">
+                            <div class="text-5xl mb-3 text-[#0074B7]">⚙️</div>
+                            <h3 class="text-xl font-semibold">3. QLoRA Fine-Tuning</h3>
+                            <p class="text-gray-500">Train the adapter on the prepared data.</p>
+                        </div>
+                        <div class="text-[#60A5FA] flow-arrow transform md:rotate-0 rotate-90">→</div>
+                        <div class="text-center flex-1">
+                            <div class="text-5xl mb-3 text-[#0074B7]">📈</div>
+                            <h3 class="text-xl font-semibold">4. Evaluation</h3>
+                            <p class="text-gray-500">Compare base vs. fine-tuned model.</p>
+                        </div>
+                        <div class="text-[#60A5FA] flow-arrow transform md:rotate-0 rotate-90">→</div>
+                        <div class="text-center flex-1">
+                            <div class="text-5xl mb-3 text-[#0074B7]">🚀</div>
+                            <h3 class="text-xl font-semibold">5. API Deployment</h3>
+                            <p class="text-gray-500">Package & serve via FastAPI.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="qlora-efficiency" class="mb-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <h2 class="text-3xl font-bold text-[#003B73] mb-4">The Power of QLoRA</h2>
+                        <p class="text-lg text-gray-600 mb-6">QLoRA (Quantized Low-Rank Adaptation) is a technique that dramatically reduces the memory and computational cost of fine-tuning. Instead of training all 8 billion parameters of the base model, we only train a tiny fraction of new, small "adapter" layers. This makes fine-tuning accessible on free-tier GPUs.</p>
+                        <div class="flex justify-around text-center">
+                            <div>
+                                <p class="text-gray-500 text-lg">Total Parameters</p>
+                                <p class="text-[#003B73] kpi-value">8B</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500 text-lg">Trainable Parameters</p>
+                                <p class="text-[#0074B7] kpi-value">42M</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-center mb-4 text-[#003B73]">Trainable vs. Total Parameters</h3>
+                        <p class="text-center text-gray-600 mb-4">This chart visualizes the incredible efficiency of QLoRA. We modify less than 1% of the model's total weights.</p>
+                        <div class="chart-container h-80">
+                            <canvas id="qloraDonutChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="training-process" class="mb-16">
+                 <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-[#003B73] mb-2 text-center">The Fine-Tuning Process</h2>
+                    <p class="text-lg text-gray-600 mb-8 text-center">The model is trained for a set number of steps on the instruction-based dataset. The goal is to minimize the "training loss," which measures how different the model's predictions are from the desired responses in the data. A decreasing loss indicates the model is learning the target style and format.</p>
+                    <div class="chart-container h-96 max-h-[500px]">
+                        <canvas id="trainingLossChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="evaluation" class="mb-16">
+                <h2 class="text-3xl font-bold text-[#003B73] mb-8 text-center">Evaluation: Did it Work?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-[#003B73] mb-4">Base Model Response</h3>
+                        <p class="text-gray-600 mb-4">When asked to explain a 'for loop', the base model gives a technically correct but somewhat generic and lengthy answer.</p>
+                        <div class="bg-gray-50 p-4 rounded-md text-sm text-gray-700 italic">
+                            "A for loop in Python is a control flow statement that is used to iterate over a sequence (such as a list, tuple, dictionary, set, or string). This is less like the for keyword in other programming languages, and works more like an iterator method as found in other object-orientated programming languages..."
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-8 border-4 border-[#0074B7]">
+                        <h3 class="text-2xl font-bold text-[#003B73] mb-4">Fine-Tuned Model Response ✨</h3>
+                        <p class="text-gray-600 mb-4">After fine-tuning on our dataset, the model adopts a simpler, more structured, and analogy-driven teaching style, mirroring the examples it learned from.</p>
+                        <div class="bg-blue-50 p-4 rounded-md text-sm text-gray-700 italic">
+                            "Think of a 'for loop' like a robot that does a task for every single item on a list. Imagine you have a shopping list: [apples, bananas, milk]. A for loop goes through them one by one.
+                            1. First, it picks 'apples' and does something with it.
+                            2. Then, it picks 'bananas' and does the same thing.
+                            3. Finally, it picks 'milk'.
+                            It's a way to repeat an action for each item in a sequence automatically!"
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="deployment-options" class="mb-16">
+                <h2 class="text-3xl font-bold text-[#003B73] mb-8 text-center">Deployment: From Notebook to Production</h2>
+                <p class="text-lg text-gray-600 mb-8 text-center max-w-3xl mx-auto">Once the model is trained, it needs to be deployed to be useful. The lab covers two key methods: a rapid development server for quick testing and a robust, scalable cloud deployment for real-world applications.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-[#003B73] mb-4">Option 1: Development Server</h3>
+                        <p class="text-gray-600 mb-6">A temporary, public endpoint is created directly from the Colab notebook using FastAPI and Ngrok. This is perfect for quick prototyping and testing without complex setup.</p>
+                        <div class="space-y-4">
+                            <div class="flex items-center bg-gray-50 p-3 rounded-lg">
+                                <span class="text-2xl mr-4">📦</span>
+                                <div><strong class="text-[#00509D]">FastAPI:</strong> Creates the web application code.</div>
+                            </div>
+                            <div class="flex items-center bg-gray-50 p-3 rounded-lg">
+                                <span class="text-2xl mr-4">🔗</span>
+                                <div><strong class="text-[#00509D]">Ngrok:</strong> Creates a secure public URL to the notebook.</div>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <p class="font-semibold text-lg">Pros & Cons:</p>
+                            <ul class="list-disc list-inside mt-2 text-gray-600">
+                                <li><strong class="text-green-600">Pro:</strong> Extremely fast to set up.</li>
+                                <li><strong class="text-green-600">Pro:</strong> Ideal for debugging.</li>
+                                <li><strong class="text-red-600">Con:</strong> Temporary and not robust.</li>
+                                <li><strong class="text-red-600">Con:</strong> Relies on the Colab session being active.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-[#003B73] mb-4">Option 2: Production on Cloud Run</h3>
+                        <p class="text-gray-600 mb-6">For a real application, the model is packaged into a Docker container and deployed on Google Cloud Run, a serverless platform that automatically scales with demand.</p>
+                        <div class="space-y-4">
+                            <div class="flex items-center bg-gray-50 p-3 rounded-lg">
+                                <span class="text-2xl mr-4">🐳</span>
+                                <div><strong class="text-[#00509D]">Dockerfile:</strong> Blueprint for a portable container.</div>
+                            </div>
+                             <div class="flex items-center bg-gray-50 p-3 rounded-lg">
+                                <span class="text-2xl mr-4">☁️</span>
+                                <div><strong class="text-[#00509D]">Cloud Run:</strong> Hosts the container as a scalable service.</div>
+                            </div>
+                        </div>
+                         <div class="mt-6">
+                            <p class="font-semibold text-lg">Pros & Cons:</p>
+                            <ul class="list-disc list-inside mt-2 text-gray-600">
+                                <li><strong class="text-green-600">Pro:</strong> Scalable and reliable.</li>
+                                <li><strong class="text-green-600">Pro:</strong> Persistent and always available.</li>
+                                <li><strong class="text-red-600">Con:</strong> More complex setup.</li>
+                                <li><strong class="text-red-600">Con:</strong> Incurs cloud costs (though minimal for low traffic).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-300">
+            <p class="text-gray-500">Infographic generated based on the "Lab Guide: From Foundation Model to Deployed API with QLoRA".</p>
+            <p class="text-gray-500">Color Palette: Brilliant Blues. No SVG or Mermaid.js used in this document.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const tooltipCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) return label;
+            
+            const words = label.split(' ');
+            let currentLine = '';
+            const lines = [];
+            
+            words.forEach(word => {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const qloraDonutCtx = document.getElementById('qloraDonutChart').getContext('2d');
+        new Chart(qloraDonutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Frozen Parameters (99.48%)', 'Trainable Adapters (0.52%)'],
+                datasets: [{
+                    label: 'Parameter Distribution',
+                    data: [8020281728, 41943040],
+                    backgroundColor: [
+                        '#60A5FA', 
+                        '#003B73'  
+                    ],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: tooltipCallback.plugins.tooltip
+                },
+                cutout: '60%'
+            }
+        });
+
+        const trainingLossCtx = document.getElementById('trainingLossChart').getContext('2d');
+        new Chart(trainingLossCtx, {
+            type: 'line',
+            data: {
+                labels: ['Step 1', 'Step 10', 'Step 20', 'Step 30', 'Step 40', 'Step 50', 'Step 60'],
+                datasets: [{
+                    label: 'Training Loss',
+                    data: [1.99, 1.29, 1.01, 0.94, 0.87, 0.90, 0.85],
+                    backgroundColor: 'rgba(0, 116, 183, 0.2)',
+                    borderColor: '#0074B7',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#003B73',
+                    pointRadius: 5,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Loss Value'
+                        }
+                    },
+                    x: {
+                         title: {
+                            display: true,
+                            text: 'Training Steps'
+                        }
+                    }
+                },
+                plugins: {
+                     legend: {
+                        display: false
+                    },
+                    tooltip: tooltipCallback.plugins.tooltip
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
